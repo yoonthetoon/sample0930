@@ -1,0 +1,4 @@
+1. Check that the ball is placed at the starting point of the Archimedes screw.
+2. Hold the screw handle and slowly turn it to the right to lift the ball upward.
+3. When the ball reaches the top and moves into the rotating rail, stop turning and observe the various motions of the ball.
+4. As the ball leaves the starting point at a fixed height and rolls down along the straight, inclined, spiral, and circular rails, you can observe various types of motion, such as accelerated motion, circular motion, and free fall. Through these different motions, you can see the application of Newton’s laws of motion and the law of conservation of mechanical energy.  
