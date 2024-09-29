@@ -1,8 +1,35 @@
 import streamlit as st
 import os
+# Set the page configuration with the light theme
+st.set_page_config(
+    page_title="Seoul Science Park",
+    layout="wide",  # You can change this to 'centered' if you prefer
+    initial_sidebar_state="auto",  # Control sidebar visibility: 'auto', 'expanded', or 'collapsed'
+)
 
-# Set page configuration
-st.set_page_config(page_title="Seoul Science Park")
+# Force light mode with custom CSS
+st.markdown(
+    """
+    <style>
+        /* Force light mode for all elements */
+        body {
+            background-color: #ffffff !important; /* Set a white background */
+            color: #000000 !important; /* Set text color to black */
+        }
+        
+        /* Override the default styles for all Streamlit elements */
+        .css-18e3th9 {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+        }
+        /* Override the sidebar background color */
+        section[data-testid="stSidebar"] {
+            background-color: #f8f9fa !important;  /* A light gray color */
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 # The list of items and their names
 fullOrder = [
