@@ -152,13 +152,13 @@ st.markdown("<div class='fixed-bottom-buttons'>", unsafe_allow_html=True)
 # Place the buttons directly next to each other
 col1, col2 = st.columns([1, 1])
 with col1:
-    if st.button("🡸", key='prev_button'):
+    if st.button("←", key='prev_button'):
         prev_index = (index - 1) % itemLength
         st.session_state['itemNo'] = itemList[prev_index]
         st.session_state['query_params'] = {"item": itemList[prev_index], "lang": lang}
 
 with col2:
-    if st.button("🡺", key='next_button'):
+    if st.button("→", key='next_button'):
         next_index = (index + 1) % itemLength
         st.session_state['itemNo'] = itemList[next_index]
         st.session_state['query_params'] = {"item": itemList[next_index], "lang": lang}
