@@ -114,48 +114,53 @@ with content_col:
     else:
         st.write("Text file not found.")
 
-bottom_col1, bottom_col2, bottom_col3 = st.columns([1, 3, 1])
+bottom_col1, bottom_col2 = st.columns([1, 1])
 
 
-# Custom CSS to make the button icons larger and align the left button to the leftmost part
+# Custom CSS to make the buttons stick to the bottom and be placed next to each other
 st.markdown("""
     <style>
-    /* Container to align buttons to the left */
-    div[data-testid="stHorizontalBlock"] > div:nth-child(1) {
+    /* Container to hold both buttons next to each other */
+    .fixed-bottom-buttons {
+        position: fixed;
+        bottom: 10px; /* Adjust this value to control how far from the bottom the buttons are */
+        left: 10px; /* Adjust this to position from the left */
         display: flex;
-        justify-content: flex-start; /* Align to the left */
+        gap: 10px; /* Space between the buttons */
+        z-index: 1000; /* Ensure the buttons stay on top of other elements */
     }
-    div[data-testid="stHorizontalBlock"] > div:nth-child(3) {
-        display: flex;
-        justify-content: flex-end; /* Align to the right */
-    }
-    
-    /* Make buttons larger */
-    div.stButton > button {
-        background-color: transparent;
-        border: none;
-        color: #000;
-        font-size: 32px !important; /* Increase font size */
-        padding: 10px 20px !important; /* Adjust padding for a larger clickable area */
+
+    /* Style for the buttons themselves */
+    .fixed-bottom-buttons button {
+        background-color: #f0f0f0; /* Button background color */
+        border: 1px solid #ccc; /* Button border */
+        font-size: 16px; /* Adjust font size */
+        padding: 10px 20px; /* Adjust padding for larger/smaller buttons */
         cursor: pointer;
+    }
+
+    /* Optional: Styling on hover */
+    .fixed-bottom-buttons button:hover {
+        background-color: #ddd; /* Change background color on hover */
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Navigation buttons for cycling through items
-with bottom_col1:
-    if st.button("🡸"):
+# Create a container to hold both buttons
+st.markdown("<div class='fixed-bottom-buttons'>", unsafe_allow_html=True)
+
+# Place the buttons directly next to each other
+col1, col2 = st.columns([1, 1])
+with col1:
+    if st.button("🡸", key='prev_button'):
         prev_index = (index - 1) % itemLength
         st.session_state['itemNo'] = itemList[prev_index]
-        
-        # Update the session state and manually set query parameters using st.session_state
         st.session_state['query_params'] = {"item": itemList[prev_index], "lang": lang}
 
-with bottom_col3:
-    if st.button("🡺"):
+with col2:
+    if st.button("🡺", key='next_button'):
         next_index = (index + 1) % itemLength
         st.session_state['itemNo'] = itemList[next_index]
-        
-        # Update the session state and manually set query parameters using st.session_state
         st.session_state['query_params'] = {"item": itemList[next_index], "lang": lang}
 
+st.markdown("</div>", unsafe_allow_html=True)
